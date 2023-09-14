@@ -72,7 +72,7 @@ module GraphQL
 
         if form_fields
           # post as multipart/form-data to stream file contents
-          form_fields.append(["operations", JSON.generate(body)])
+          form_fields.prepend(["operations", JSON.generate(body)])
           request.set_form(form_fields, "multipart/form-data")
         else
           # post as application/json
@@ -137,7 +137,7 @@ module GraphQL
           end
         end
 
-        form_data.presence && form_data.append(["map", JSON.generate(file_map)])
+        form_data.presence && form_data.prepend(["map", JSON.generate(file_map)])
       end
     end
   end
